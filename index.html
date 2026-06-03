@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🍨 ნაყინის კატალოგი — Georgia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══ NAVBAR ══ -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#">
+        <span class="nav-logo">🍨</span>
+        <span class="nav-brand-text">ნაყინი<em>.ge</em></span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a class="nav-link" href="#brands">ბრენდები</a>
+        <a class="nav-link" href="#catalog">კატალოგი</a>
+        <a class="nav-link" href="#compare">შედარება</a>
+        <a class="nav-link nav-cta" href="https://tolia.ge" target="_blank">tolia.ge ↗</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="მენიუ">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <header class="hero">
+    <div class="hero-blobs">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">🇬🇪 საქართველოს ნაყინი</div>
+      <h1 class="hero-title">
+        <span>ყველა</span>
+        <span class="hero-accent">ნაყინი</span>
+        <span>ერთ ადგილას</span>
+      </h1>
+      <p class="hero-sub">თოლიას ართიზანული ნაყინიდან იტალიურ გელატომდე — შეადარე, იპოვე, ისიამოვნე</p>
+      <div class="hero-actions">
+        <a href="#catalog" class="btn btn-primary">კატალოგი</a>
+        <a href="#brands" class="btn btn-ghost">ბრენდები</a>
+      </div>
+    </div>
+    <div class="hero-float">
+    <div class="float-card fc-1">
+      <img src="logos/logo_ka.png" alt="Tolia">
+    </div>
+
+    <div class="float-card fc-2">
+      <img src="logos/luca.png" alt="Luca Polare">
+    </div>
+
+    <div class="float-card fc-3">
+      <img src="logos/pingo.png" alt="Pingo">
+    </div>
+
+    <div class="float-card fc-4">
+      <img src="logos/lideri.png" alt="Lider">
+    </div>
+    </div>
+  </header>
+
+  <!-- ══ BRANDS ══ -->
+  <section id="brands" class="section-brands">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">ბრენდები</span>
+        <h2>ვინ ვართ ბაზარზე</h2>
+        <p>4 ბრენდი, ასობით გემო — ყველა ერთ კატალოგში</p>
+      </div>
+      <div id="brandsRow" class="brands-grid"></div>
+    </div>
+  </section>
+
+  <!-- ══ STATS BAR ══ -->
+  <div class="stats-bar">
+    <div class="container stats-inner">
+      <div class="stat"><span class="stat-num" id="statTotal">—</span><span class="stat-lbl">პროდუქტი სულ</span></div>
+      <div class="stat-div"></div>
+      <div class="stat"><span class="stat-num">4</span><span class="stat-lbl">ბრენდი</span></div>
+      <div class="stat-div"></div>
+      <div class="stat"><span class="stat-num" id="statCats">—</span><span class="stat-lbl">კატეგორია</span></div>
+      <div class="stat-div"></div>
+      <div class="stat"><span class="stat-num">₾1.20</span><span class="stat-lbl">მინ. ფასი</span></div>
+    </div>
+  </div>
+
+  <!-- ══ CATALOG ══ -->
+  <section id="catalog" class="section-catalog">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">კატალოგი</span>
+        <h2>პროდუქტები</h2>
+      </div>
+
+      <!-- Filters -->
+      <div class="filters-panel">
+        <!-- Search -->
+        <div class="search-wrap">
+          <span class="search-icon">🔍</span>
+          <input id="searchInput" type="text" placeholder="მოძებნე ნაყინი…" autocomplete="off" />
+          <button id="clearBtn" class="clear-btn" style="display:none">✕</button>
+        </div>
+
+        <!-- Brand pills -->
+        <div class="filter-row">
+          <span class="filter-label">ბრენდი</span>
+          <div class="pills" id="pillsBrand">
+            <button class="pill active" data-key="brand" data-val="all">ყველა</button>
+          </div>
+        </div>
+
+        <!-- Category pills -->
+        <div class="filter-row">
+          <span class="filter-label">კატეგორია</span>
+          <div class="pills" id="pillsCat">
+            <button class="pill active" data-key="category" data-val="all">ყველა</button>
+          </div>
+        </div>
+
+        <!-- Price pills -->
+        <div class="filter-row">
+          <span class="filter-label">ფასი</span>
+          <div class="pills" id="pillsPrice">
+            <button class="pill active" data-key="price" data-val="all">ყველა</button>
+            <button class="pill" data-key="price" data-val="low">₾0–5</button>
+            <button class="pill" data-key="price" data-val="mid">₾5–10</button>
+            <button class="pill" data-key="price" data-val="high">₾10+</button>
+          </div>
+        </div>
+
+        <div class="filter-meta">
+          <span id="resultsCount" class="results-count"></span>
+          <button class="btn-reset" onclick="resetAll()">გასუფთავება ✕</button>
+        </div>
+      </div>
+
+      <!-- Grid -->
+      <div id="productGrid" class="product-grid"></div>
+      <div id="noResults" class="no-results" style="display:none">
+        <span>🍦</span>
+        <p>პროდუქტი ვერ მოიძებნა</p>
+        <button onclick="resetAll()">ფილტრების გასუფთავება</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ COMPARE ══ -->
+  <section id="compare" class="section-compare">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">შედარება</span>
+        <h2>ბრენდების პოზიციონირება</h2>
+        <p>ფასი, ხარისხი და ასორტიმენტი — ერთ ცხრილში</p>
+      </div>
+      <div class="compare-table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>ბრენდი</th>
+              <th>სეგმენტი</th>
+              <th>ფასის დიაპაზონი</th>
+              <th>ასორტიმენტი</th>
+              <th>განმასხვავებელი</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr class="row-tolia">
+            <td class="brand-cell">
+              <img src="logos/logo_ka.png" alt="Tolia" class="brand-logo">
+              <span class="cmp-brand">Tolia</span>
+            </td>
+            <td><span class="badge badge-premium">პრემიუმ</span></td>
+            <td>₾1.20 – ₾35</td>
+            <td>სენდვიჩი, ბურთები, ესკიმო, ლოლო, საოჯახო</td>
+            <td>ართიზანული, ბუნებრივი, tolia.ge</td>
+          </tr>
+
+          <tr class="row-luca">
+            <td class="brand-cell">
+              <img src="logos/luca.png" alt="Luca Polare" class="brand-logo">
+              <span class="cmp-brand">Luca Polare</span>
+            </td>
+            <td><span class="badge badge-premium">პრემიუმ</span></td>
+            <td>₾6.71 – ₾18.71</td>
+            <td>გელატო, სორბე</td>
+            <td>იტალიური რეცეპტი, ადგილობრივი რძე</td>
+          </tr>
+
+          <tr class="row-pingo">
+            <td class="brand-cell">
+              <img src="logos/pingo.png" alt="Pingo" class="brand-logo">
+              <span class="cmp-brand">Pingo</span>
+            </td>
+            <td><span class="badge badge-value">ოჯახური</span></td>
+            <td>₾1.20 – ₾8+</td>
+            <td>ესკიმო, პლომბირი, ჭიქა, საოჯახო</td>
+            <td>ყველაზე პოპულარული, ფართო ქსელი</td>
+          </tr>
+
+          <tr class="row-lider">
+            <td class="brand-cell">
+              <img src="logos/lideri.png" alt="Lider" class="brand-logo">
+              <span class="cmp-brand">Lider</span>
+            </td>
+            <td><span class="badge badge-classic">ტრადიციული</span></td>
+            <td>₾0.80 – ₾4</td>
+            <td>ვაფლის ჭიქა, პლომბირი, ყინული</td>
+            <td>2001 წლიდან, ყველაზე ხელმისაწვდომი</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span>🍨</span>
+        <span>ნაყინი<em>.ge</em></span>
+      </div>
+      <p>საქართველოს ნაყინის სრული კატალოგი · 2025</p>
+      <div class="footer-links">
+        <a href="https://tolia.ge" target="_blank">tolia.ge</a>
+        <a href="https://pingo.ge" target="_blank">pingo.ge</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
