@@ -603,6 +603,31 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     padding: 12px 24px;
   }
 
+  /* FIX FOR HIDDEN HERO CONTENT */
+  .hero {
+    min-height: auto;
+    height: auto;
+    padding: 140px 24px 80px;
+  }
+
+  .hero-content {
+    width: 100%;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  .hero-sub {
+    margin-bottom: 24px;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
   .filters-panel {
     padding: 20px;
   }
