@@ -677,3 +677,62 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   height: auto;
   object-fit: contain;
 }
+/* ღილაკების კონტეინერის სტილი */
+.location-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  width: 100%;
+}
+
+/* ზოგადი ღილაკის სტილი (როგორც ეტიკეტისთვის, ასევე ბმულისთვის) */
+.btn-map-action {
+  flex: 1;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none; /* აშორებს ხაზგასმას <a> ტეგს */
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* „ნახვა რუკაზე“ ღილაკი - ლურჯი */
+.btn-map-view {
+  background-color: #1A73E8;
+  color: #ffffff;
+  border: none;
+}
+
+.btn-map-view:hover {
+  background-color: #1557B0;
+}
+
+/* „მიმართულება“ ღილაკი - ღია ნაცრისფერი ჩარჩოთი */
+.btn-map-dir {
+  background-color: #f1f5f9;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+}
+
+.btn-map-dir:hover {
+  background-color: #e2e8f0;
+  color: #0f172a;
+  border-color: #94a3b8;
+}
+
+/* მობილური ტელეფონების ეკრანის ოპტიმიზაცია */
+@media (max-width: 768px) {
+  .map-layout {
+    flex-direction: column-reverse; /* რუკა მოექცევა სიის თავზე კომფორტისთვის */
+  }
+  #icecream-leaflet-map {
+    height: 320px !important; /* რუკის ოპტიმალური ზომა ტელეფონში */
+  }
+}

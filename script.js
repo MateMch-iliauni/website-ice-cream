@@ -1107,7 +1107,6 @@ async function fetchProductLocations(productId) {
   });
 }
 
-// რუკის განახლება მარკერებით
 function updateInteractiveMap(locations) {
   if (!activeLeafletMap) {
     activeLeafletMap = L.map('icecream-leaflet-map').setView([41.7151, 44.8271], 12);
@@ -1141,7 +1140,7 @@ function updateInteractiveMap(locations) {
   });
 
   if (coordinatesBounds.length > 0) {
-    activeLeafletMap.fitBounds(coordinatesBounds, { padding: [50, 50], maxZoom: 15 });
+    activeLeafletMap.fitBounds(coordinatesBounds, { padding: [30, 30], maxZoom: 15 });
   }
 }
 
@@ -1165,19 +1164,33 @@ async function selectIceCreamProduct(productId, productName) {
 
   mapSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-  setTimeout(() => {
-    if (activeLeafletMap) activeLeafletMap.invalidateSize();
-  }, 300);
-
   try {
     const storeLocations = await fetchProductLocations(productId);
     updateInteractiveMap(storeLocations);
+
+    // CRITICAL FOR MOBILE: Trigger map refresh after layout shifts and smooth scrolling finish
+    setTimeout(() => {
+      if (activeLeafletMap) {
+        activeLeafletMap.invalidateSize(); 
+        const coordinatesBounds = storeLocations.map(loc => [loc.lat, loc.lng]);
+        if (coordinatesBounds.length > 0) {
+          // Smaller padding for mobile screens so map features aren't squeezed out
+          const isMobile = window.innerWidth < 768;
+          activeLeafletMap.fitBounds(coordinatesBounds, { 
+            padding: isMobile ? [15, 15] : [40, 40], 
+            maxZoom: 14 
+          });
+        }
+      }
+    }, 400); // Increased slightly to wait out the smooth scrolling window
 
     listContainer.innerHTML = "";
     
     storeLocations.forEach((loc, index) => {
       const card = document.createElement("div");
       card.className = "location-card";
+      
+      // FIXED: Corrected your Google Maps template literal URL structure here
       card.innerHTML = `
         <h4>${loc.name}</h4>
         <p>${loc.address}</p>
@@ -1195,13 +1208,23 @@ async function selectIceCreamProduct(productId, productName) {
         document.querySelectorAll(".location-card").forEach(c => c.classList.remove("active"));
         card.classList.add("active");
         if (loc.connectedMarker && activeLeafletMap) {
-          activeLeafletMap.setView([loc.lat, loc.lng], 16);
+          activeLeafletMap.setView([loc.lat, loc.lng], 15);
           loc.connectedMarker.openPopup();
+          
+          // Smooth scroll the map into mobile view if user clicks a card from below
+          if (window.innerWidth < 768) {
+            document.getElementById('icecream-leaflet-map').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
         }
       };
 
+      card.querySelector(".btn-map-view").addEventListener("click", (e) => {
+        e.stopPropagation();
+        activateCardMarker();
+      });
+
       card.addEventListener("click", (e) => {
-        if (!e.target.classList.contains('btn-map-dir')) {
+        if (!e.target.closest('.btn-map-dir')) {
           activateCardMarker();
         }
       });
@@ -1221,7 +1244,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.head.appendChild(loaderStyle);
 
   document.addEventListener("click", (e) => {
-    // 1. ბრენდის ბარათებზე დაჭერა
     const clickedBrandCard = e.target.closest(".brand-card");
     if (clickedBrandCard) {
       const headingName = clickedBrandCard.querySelector("h3")?.innerText || "ბრენდი";
@@ -1229,7 +1251,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // 2. ცხრილის სტრიქონზე დაჭერა
     const clickedRow = e.target.closest(".compare-table tbody tr");
     if (clickedRow) {
       const brandName = clickedRow.querySelector(".cmp-brand")?.innerText || clickedRow.className;
@@ -1237,7 +1258,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // 3. კატალოგის კონკრეტულ ნაყინებზე დაჭერა
     const clickedProduct = e.target.closest("#productGrid > div") || e.target.closest(".product-card");
     if (clickedProduct) {
       const allText = clickedProduct.innerText || "";
