@@ -997,3 +997,252 @@ document.addEventListener("DOMContentLoaded", () => {
   setupSearch();
   renderProducts();
 });
+
+/* ══════════════════════════════════════════════════════
+   ⑬ EXTENSION: MAP & DYNAMIC BACKEND SIMULATION LAYER
+   ══════════════════════════════════════════════════════ */
+
+// გაფართოებული მონაცემთა ბაზა თქვენი ახალი ლოკაციებით
+const backendLocationsDB = {
+  default: [
+    { name: "ნაყინის ცენტრალური კაფე", address: "რუსთაველის გამზირი 24, თბილისი", lat: 41.6998, lng: 44.7991, hours: "10:00 - 22:00", rating: "4.9", desc: "ყველა სახეობის სრული ასორტიმენტი" },
+    { name: "ლუკა პოლარე - ვაკე", address: "ჭავჭავაძის გამზირი 34, თბილისი", lat: 41.7112, lng: 44.7578, hours: "09:00 - 23:00", rating: "4.8", desc: "პრემიუმ იტალიური ჯელატო" },
+    { name: "ტკბილი კუთხე - საბურთალო", address: "პეკინის გამზირი 15, თბილისი", lat: 41.7245, lng: 44.7692, hours: "10:00 - 21:00", rating: "4.6", desc: "ოჯახური ნაყინის წერტილი" },
+
+    // 🛍️ MALLS
+    { name: "ნაყინის კიოსკი - Galleria Tbilisi", address: "რუსთაველის გამზირი 2/4, თბილისი", lat: 41.6941, lng: 44.8015, hours: "10:00 - 22:00", rating: "4.7", desc: "ცენტრალური სავაჭრო ცენტრის კიოსკი" },
+    { name: "ნაყინის კუნძული - Tbilisi Mall", address: "აგლაძის ქუჩა 71, თბილისი", lat: 41.7852, lng: 44.7531, hours: "10:00 - 22:00", rating: "4.6", desc: "დიდი სავაჭრო ცენტრის განყოფილება" },
+    { name: "ნაყინის ზონა - East Point", address: "ალექსანდრე თვალჭრელიძის ქუჩა 2, თბილისი", lat: 41.6983, lng: 44.8954, hours: "10:00 - 23:00", rating: "4.6", desc: "გასართობი ცენტრის დესერტები" },
+    { name: "ნაყინის კუთხე - City Mall საბურთალო", address: "ვაჟა-ფშაველას გამზირი 70, თბილისი", lat: 41.7262, lng: 44.7394, hours: "10:00 - 22:00", rating: "4.5", desc: "მოლში სწრაფი დესერტები" },
+
+    // 🌳 PARKS
+    { name: "ნაყინის ჯიხური - ვაკის პარკი", address: "ვაკის პარკი, თბილისი", lat: 41.7096, lng: 44.7742, hours: "11:00 - 23:00", rating: "4.7", desc: "პარკის სეზონური კიოსკი" },
+    { name: "ნაყინის პავილიონი - მთაწმინდა", address: "მთაწმინდის პარკი, თბილისი", lat: 41.6943, lng: 44.7856, hours: "12:00 - 00:00", rating: "4.8", desc: "გასართობი პარკის დესერტები" },
+    { name: "ნაყინის ჯიხური - რიყის პარკი", address: "რიყის პარკი, თბილისი", lat: 41.6931, lng: 44.8122, hours: "11:00 - 23:00", rating: "4.7", desc: "ტურისტული ზონის კიოსკი" },
+
+    // 🛒 SUPERMARKETS
+    { name: "Ori Nabiji - დიღომი", address: "დიღომი, თბილისი", lat: 41.7805, lng: 44.7452, hours: "08:00 - 23:00", rating: "4.4", desc: "სუპერმარკეტი - ნაყინის ფართო არჩევანი" },
+    { name: "Nikora - გლდანი", address: "ხიზანიშვილის ქუჩა, თბილისი", lat: 41.7931, lng: 44.8164, hours: "08:00 - 22:00", rating: "4.3", desc: "ყოველდღიური პროდუქტები და ნაყინი" },
+    { name: "Spar - ვაჟა-ფშაველა", address: "ვაჟა-ფშაველას გამზირი, თბილისი", lat: 41.7251, lng: 44.7412, hours: "08:00 - 23:00", rating: "4.4", desc: "ევროპული სუპერმარკეტი" },
+    { name: "Carrefour - ისთ ფოინთი", address: "ისთ ფოინთი, თბილისი", lat: 41.6983, lng: 44.8954, hours: "10:00 - 23:00", rating: "4.5", desc: "ჰიპერმარკეტი" },
+    { name: "Goodwill - საბურთალო", address: "პეკინის გამზირი, თბილისი", lat: 41.7240, lng: 44.7690, hours: "09:00 - 22:00", rating: "4.3", desc: "პრემიუმ სუპერმარკეტი" },
+
+    // 🍦 ICE CREAM BRANDS
+    { name: "Eskimo - დიღომი", address: "აგლაძის ქუჩა 14, თბილისი", lat: 41.7805, lng: 44.7452, hours: "09:00 - 22:00", rating: "4.5", desc: "ადგილობრივი ნაყინის ბრენდი" },
+    { name: "Eskimo - ბათუმის ბულვარი", address: "ბათუმის ბულვარი", lat: 41.6512, lng: 41.6365, hours: "10:00 - 02:00", rating: "4.8", desc: "ზღვისპირა ფილიალი" },
+
+    // ⛽ GAS STATIONS
+    { name: "Wissol - ნაყინის კუთხე", address: "თბილისი-რუსთავის გზა", lat: 41.6882, lng: 44.8751, hours: "24/7", rating: "4.2", desc: "სწრაფი სნექები და ნაყინი" },
+    { name: "Gulf - სერვის ზონა", address: "კახეთის გზატკეცილი", lat: 41.6853, lng: 44.9124, hours: "24/7", rating: "4.1", desc: "მგზავრობის გაჩერება" },
+
+    // 🌍 BATUMI
+    { name: "ბათუმის ნაყინის ბულვარი", address: "ნინოშვილის ქუჩა, ბათუმი", lat: 41.6512, lng: 41.6365, hours: "10:00 - 02:00", rating: "4.9", desc: "ტურისტული ზონა" },
+    { name: "6 მაისის პარკი - ნაყინი", address: "ბათუმი, 6 მაისის პარკი", lat: 41.6478, lng: 41.6234, hours: "11:00 - 23:00", rating: "4.7", desc: "პარკის კიოსკი" },
+
+    // 🌄 REGIONAL
+    { name: "გურჯაანის ნაყინის წერტილი", address: "გურჯაანი, ცენტრი", lat: 41.7441, lng: 45.8012, hours: "10:00 - 21:00", rating: "4.5", desc: "რეგიონული წარმოება" },
+    { name: "ქუთაისის პარკის ნაყინი", address: "ქუთაისი, ცენტრალური პარკი", lat: 42.2717, lng: 42.7053, hours: "10:00 - 22:00", rating: "4.6", desc: "იმერეთის მთავარი პარკი" }
+  ],
+
+  tolia: [
+    { name: "Tolia საფლაგმანო კაფე", address: "რუსთაველის გამზირი 24, თბილისი", lat: 41.6998, lng: 44.7991, hours: "10:00 - 22:00", rating: "4.9", desc: "ჩამოსასხმელი ნაყინი" },
+    { name: "Tolia - City Mall", address: "ვაჟა-ფშაველა, თბილისი", lat: 41.7262, lng: 44.7394, hours: "10:00 - 22:00", rating: "4.8", desc: "მოლში მდებარე ფილიალი" }
+  ],
+
+  luca: [
+    { name: "Luca Polare - ძველი თბილისი", address: "კოტე აფხაზი 34", lat: 41.6918, lng: 44.8062, hours: "08:00 - 23:00", rating: "4.9", desc: "კლასიკური იტალიური სტილი" },
+    { name: "Luca Polare - ბათუმი", address: "ბულვარი, ბათუმი", lat: 41.6534, lng: 41.6321, hours: "08:00 - 01:00", rating: "4.9", desc: "ზღვისპირა ლოკაცია" }
+  ],
+
+  pingo: [
+    { name: "Pingo - გლდანი", address: "ხიზანიშვილის ქუჩა 8", lat: 41.7912, lng: 44.8195, hours: "09:00 - 22:00", rating: "4.5", desc: "საოჯახო პროდუქცია" }
+  ],
+
+  lider: [
+    { name: "ლიდერი - საწყობი", address: "კახეთის გზატკეცილი", lat: 41.6853, lng: 44.9124, hours: "08:00 - 20:00", rating: "4.5", desc: "იაფი ნაყინი" }
+  ]
+};
+
+let activeLeafletMap = null;
+let activeMapMarkers = [];
+
+// ტექსტიდან ბრენდის გასაღების ამომცნობი
+function detectBrandKey(text) {
+  const str = (text || "").toLowerCase();
+  if (str.includes("tolia") || str.includes("თოლია")) return "tolia";
+  if (str.includes("luca") || str.includes("ლუკა")) return "luca";
+  if (str.includes("pingo") || str.includes("პინგო")) return "pingo";
+  if (str.includes("lider") || str.includes("ლიდერ")) return "lider";
+  return "default";
+}
+
+// ლოკაციების ჭკვიანი ფეტჩინგი ბექენდის სიმულაციით
+async function fetchProductLocations(productId) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const brandKey = detectBrandKey(productId);
+      const specificLocations = backendLocationsDB[brandKey] || backendLocationsDB.default;
+      
+      // თუ მომხმარებელი ირჩევს მასობრივ ბრენდს (Tolia, Pingo, Lider), ოფიციალურ წერტილებთან ერთად
+      // გამოვუჩინოთ სუპერმარკეტები, მოლები და პარკებიც 'default' სიიდან, სადაც ეს პროდუქცია იყიდება!
+      if (brandKey === "tolia" || brandKey === "pingo" || brandKey === "lider") {
+        const publicOutlets = backendLocationsDB.default.filter(loc => 
+          loc.name.includes("Ori Nabiji") || 
+          loc.name.includes("Nikora") || 
+          loc.name.includes("Spar") || 
+          loc.name.includes("Carrefour") || 
+          loc.name.includes("Goodwill") ||
+          loc.name.includes("Galleria") ||
+          loc.name.includes("Tbilisi Mall") ||
+          loc.name.includes("East Point") ||
+          loc.name.includes("City Mall") ||
+          loc.name.includes("პარკი") ||
+          loc.name.includes("ბულვარი")
+        );
+        resolve([...specificLocations, ...publicOutlets]);
+      } else {
+        resolve(specificLocations);
+      }
+    }, 350);
+  });
+}
+
+// რუკის განახლება მარკერებით
+function updateInteractiveMap(locations) {
+  if (!activeLeafletMap) {
+    activeLeafletMap = L.map('icecream-leaflet-map').setView([41.7151, 44.8271], 12);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap'
+    }).addTo(activeLeafletMap);
+  }
+
+  // ძველი მარკერების გასუფთავება
+  activeMapMarkers.forEach(m => activeLeafletMap.removeLayer(m));
+  activeMapMarkers = [];
+
+  if (!locations || locations.length === 0) return;
+  const coordinatesBounds = [];
+
+  locations.forEach((loc) => {
+    const customPopupHTML = `
+      <div style="min-width: 150px; font-family: sans-serif;">
+        <h5 style="margin:0 0 4px 0; font-size:14px; color:#1E293B;">🍨 ${loc.name}</h5>
+        <p style="margin:2px 0; font-size:12px; color:#64748B;">${loc.address}</p>
+        <p style="margin:4px 0; font-size:11px; font-weight:600; color:#F05891;">${loc.desc}</p>
+      </div>
+    `;
+
+    const marker = L.marker([loc.lat, loc.lng]).addTo(activeLeafletMap);
+    marker.bindPopup(customPopupHTML);
+    activeMapMarkers.push(marker);
+    coordinatesBounds.push([loc.lat, loc.lng]);
+
+    loc.connectedMarker = marker;
+  });
+
+  if (coordinatesBounds.length > 0) {
+    activeLeafletMap.fitBounds(coordinatesBounds, { padding: [50, 50], maxZoom: 15 });
+  }
+}
+
+// მთავარი ფუნქცია პროდუქტის/ბრენდის არჩევისას
+async function selectIceCreamProduct(productId, productName) {
+  const mapSection = document.getElementById("map-integration-section");
+  const subTitle = document.getElementById("selected-product-title");
+  const listContainer = document.getElementById("locations-list-container");
+
+  if (!mapSection) return;
+
+  mapSection.style.display = "block";
+  subTitle.innerHTML = `📍 ხელმისაწვდომია პროდუქტისთვის: <span style="color: var(--pink-acc); font-weight: 800;">${productName}</span>`;
+  
+  listContainer.innerHTML = `
+    <div style="text-align:center; padding: 40px 10px; color: var(--gray-400);">
+      <div style="display:inline-block; font-size: 2rem; animation: spinLoader 1s linear infinite; margin-bottom:8px;">🍦</div>
+      <p>მიმდინარეობს ფილიალების მოძიება...</p>
+    </div>
+  `;
+
+  mapSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  setTimeout(() => {
+    if (activeLeafletMap) activeLeafletMap.invalidateSize();
+  }, 300);
+
+  try {
+    const storeLocations = await fetchProductLocations(productId);
+    updateInteractiveMap(storeLocations);
+
+    listContainer.innerHTML = "";
+    
+    storeLocations.forEach((loc, index) => {
+      const card = document.createElement("div");
+      card.className = "location-card";
+      card.innerHTML = `
+        <h4>${loc.name}</h4>
+        <p>${loc.address}</p>
+        <div class="location-meta">
+          <span>⭐ ${loc.rating}</span>
+          <span>🕒 ${loc.hours}</span>
+        </div>
+        <div class="location-actions">
+          <button class="btn-map-action btn-map-view" data-idx="${index}">ნახვა რუკაზე</button>
+          <a class="btn-map-action btn-map-dir" href="https://www.google.com/maps/dir/?api=1&destination=${loc.lat},${loc.lng}" target="_blank">მიმართულება</a>
+        </div>
+      `;
+
+      const activateCardMarker = () => {
+        document.querySelectorAll(".location-card").forEach(c => c.classList.remove("active"));
+        card.classList.add("active");
+        if (loc.connectedMarker && activeLeafletMap) {
+          activeLeafletMap.setView([loc.lat, loc.lng], 16);
+          loc.connectedMarker.openPopup();
+        }
+      };
+
+      card.addEventListener("click", (e) => {
+        if (!e.target.classList.contains('btn-map-dir')) {
+          activateCardMarker();
+        }
+      });
+
+      listContainer.appendChild(card);
+    });
+
+  } catch (error) {
+    listContainer.innerHTML = `<p style="text-align:center; color: var(--pink-acc);">მონაცემების ჩატვირთვა ვერ მოხერხდა.</p>`;
+  }
+}
+
+// ივენთების მსმენელი მომხმარებლის კლიკებზე
+document.addEventListener("DOMContentLoaded", () => {
+  const loaderStyle = document.createElement("style");
+  loaderStyle.innerText = `@keyframes spinLoader { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }`;
+  document.head.appendChild(loaderStyle);
+
+  document.addEventListener("click", (e) => {
+    // 1. ბრენდის ბარათებზე დაჭერა
+    const clickedBrandCard = e.target.closest(".brand-card");
+    if (clickedBrandCard) {
+      const headingName = clickedBrandCard.querySelector("h3")?.innerText || "ბრენდი";
+      selectIceCreamProduct(headingName, headingName);
+      return;
+    }
+
+    // 2. ცხრილის სტრიქონზე დაჭერა
+    const clickedRow = e.target.closest(".compare-table tbody tr");
+    if (clickedRow) {
+      const brandName = clickedRow.querySelector(".cmp-brand")?.innerText || clickedRow.className;
+      selectIceCreamProduct(brandName, brandName);
+      return;
+    }
+
+    // 3. კატალოგის კონკრეტულ ნაყინებზე დაჭერა
+    const clickedProduct = e.target.closest("#productGrid > div") || e.target.closest(".product-card");
+    if (clickedProduct) {
+      const allText = clickedProduct.innerText || "";
+      const iceCreamTitle = clickedProduct.querySelector("h3, h4, .product-title")?.innerText || "ნაყინი";
+      selectIceCreamProduct(allText, iceCreamTitle);
+    }
+  });
+});

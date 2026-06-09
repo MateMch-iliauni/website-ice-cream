@@ -8,10 +8,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 </head>
 <body>
 
-  <!-- ══ NAVBAR ══ -->
   <nav id="navbar">
     <div class="nav-inner">
       <a class="nav-brand" href="#">
@@ -30,7 +31,6 @@
     </div>
   </nav>
 
-  <!-- ══ HERO ══ -->
   <header class="hero">
     <div class="hero-blobs">
       <div class="blob blob-1"></div>
@@ -69,7 +69,6 @@
     </div>
   </header>
 
-  <!-- ══ BRANDS ══ -->
   <section id="brands" class="section-brands">
     <div class="container">
       <div class="section-head">
@@ -81,7 +80,6 @@
     </div>
   </section>
 
-  <!-- ══ STATS BAR ══ -->
   <div class="stats-bar">
     <div class="container stats-inner">
       <div class="stat"><span class="stat-num" id="statTotal">72</span><span class="stat-lbl">პროდუქტი სულ</span></div>
@@ -94,7 +92,6 @@
     </div>
   </div>
 
-  <!-- ══ CATALOG ══ -->
   <section id="catalog" class="section-catalog">
     <div class="container">
       <div class="section-head">
@@ -102,16 +99,13 @@
         <h2>პროდუქტები</h2>
       </div>
 
-      <!-- Filters -->
       <div class="filters-panel">
-        <!-- Search -->
         <div class="search-wrap">
           <span class="search-icon">🔍</span>
           <input id="searchInput" type="text" placeholder="მოძებნე ნაყინი…" autocomplete="off" />
           <button id="clearBtn" class="clear-btn" style="display:none">✕</button>
         </div>
 
-        <!-- Brand pills -->
         <div class="filter-row">
           <span class="filter-label">ბრენდი</span>
           <div class="pills" id="pillsBrand">
@@ -119,7 +113,6 @@
           </div>
         </div>
 
-        <!-- Category pills -->
         <div class="filter-row">
           <span class="filter-label">კატეგორია</span>
           <div class="pills" id="pillsCat">
@@ -127,7 +120,6 @@
           </div>
         </div>
 
-        <!-- Price pills -->
         <div class="filter-row">
           <span class="filter-label">ფასი</span>
           <div class="pills" id="pillsPrice">
@@ -144,7 +136,6 @@
         </div>
       </div>
 
-      <!-- Grid -->
       <div id="productGrid" class="product-grid"></div>
       <div id="noResults" class="no-results" style="display:none">
         <span>🍦</span>
@@ -154,7 +145,6 @@
     </div>
   </section>
 
-  <!-- ══ COMPARE ══ -->
   <section id="compare" class="section-compare">
     <div class="container">
       <div class="section-head">
@@ -223,7 +213,27 @@
     </div>
   </section>
 
-  <!-- ══ FOOTER ══ -->
+  <section id="map-integration-section" class="map-section" style="display: none; padding: 80px 24px; background: var(--off-white);">
+    <div class="container">
+      <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+        <h2 class="section-title" style="font-family: 'Poppins', sans-serif; font-size: 2.5rem; color: var(--gray-800); margin-bottom: 12px;">📍 სად შევიძინოთ?</h2>
+        <p class="section-subtitle" id="selected-product-title" style="color: var(--blue); font-weight: 600; font-size: 1.2rem;">აირჩიეთ ნაყინი კატალოგში ხელმისაწვდომი ფილიალების სანახავად</p>
+      </div>
+      
+      <div class="map-layout" style="display: flex; gap: 24px; flex-wrap: wrap; min-height: 500px;">
+        <div class="map-sidebar" style="flex: 1; min-width: 320px; max-height: 500px; overflow-y: auto; background: var(--white); padding: 20px; border-radius: 16px; box-shadow: var(--shadow-s);">
+          <div id="locations-list-container" style="display: flex; flex-direction: column; gap: 16px;">
+            <p style="color: var(--gray-600); text-align: center; padding: 20px;">აირჩიეთ სასურველი ნაყინი ზემოთ მოცემული კატალოგიდან ხელმისაწვდომი წერტილების სიის სანახავად.</p>
+          </div>
+        </div>
+        
+        <div class="map-container-wrapper" style="flex: 2; min-width: 320px; height: 500px; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-s); position: relative;">
+          <div id="icecream-leaflet-map" style="width: 100%; height: 100%;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer class="footer">
     <div class="container footer-inner">
       <div class="footer-brand">
@@ -238,6 +248,7 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="script.js"></script>
 </body>
 </html>
