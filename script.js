@@ -355,8 +355,8 @@ const products = [
     category:"გელატო",
     desc:"90 გ-იანი ერთი ბურთი ნამდვილი იტალიური გელატო — ნებისმიერი სეზონური გემო.",
     price:"₾6.71", priceNum:6.71,
-    image:"https://glovo.dhmedia.io/image/menus-glovo/products/05c9ea03fb9a1742d1250c7805c3bb382746944bc9915eb892794dac67b4f69a?t=W3sicmVzaXplIjp7Im1vZGUiOiJmaXQiLCJ3aWR0aCI6MzIwLCJoZWlnaHQiOjMyMH19XQ==",
-    emoji:"🍧",
+    image:"lucapolare/luca1.png",
+    emoji:"🍧"
   },
   {
     id:"l2", brandId:"luca",
@@ -364,8 +364,8 @@ const products = [
     category:"გელატო",
     desc:"ორი ბურთი (90 გ × 2) — ორი სხვადასხვა გემო ერთ ჭიქაში.",
     price:"₾12.71", priceNum:12.71,
-    image:"https://glovo.dhmedia.io/image/menus-glovo/products/05c9ea03fb9a1742d1250c7805c3bb382746944bc9915eb892794dac67b4f69a?t=W3sicmVzaXplIjp7Im1vZGUiOiJmaXQiLCJ3aWR0aCI6MzIwLCJoZWlnaHQiOjMyMH19XQ==",
-    emoji:"🍧",
+    image:"lucapolare/luca2.png",
+    emoji:"🍧"
   },
   {
     id:"l3", brandId:"luca",
@@ -373,55 +373,153 @@ const products = [
     category:"გელატო",
     desc:"სამი ბურთი იტალიური გელატო — საუკეთესო გემო სამეულად.",
     price:"₾18.71", priceNum:18.71,
-    image:"https://glovo.dhmedia.io/image/menus-glovo/products/05c9ea03fb9a1742d1250c7805c3bb382746944bc9915eb892794dac67b4f69a?t=W3sicmVzaXplIjp7Im1vZGUiOiJmaXQiLCJ3aWR0aCI6MzIwLCJoZWlnaHQiOjMyMH19XQ==",
-    emoji:"🍧",
+    image:"lucapolare/luca3.png",
+    emoji:"🍧"
   },
   {
     id:"l4", brandId:"luca",
     name:"სტრაჩიატელა",
     category:"გელატო",
-    desc:"კლასიკური იტალიური გელატო — კრემოვანი ვანილი წვრილი შოკოლადის ლენტებით.",
+    desc:"კლასიკური ვანილის გელატო შოკოლადის ნატეხებით.",
     price:"₾6.71", priceNum:6.71,
-    image:"https://glovo.dhmedia.io/image/menus-glovo/products/05c9ea03fb9a1742d1250c7805c3bb382746944bc9915eb892794dac67b4f69a?t=W3sicmVzaXplIjp7Im1vZGUiOiJmaXQiLCJ3aWR0aCI6MzIwLCJoZWlnaHQiOjMyMH19XQ==",
-    emoji:"🤍",
+    image:"lucapolare/luca4.png",
+    emoji:"🤍"
   },
   {
     id:"l5", brandId:"luca",
     name:"ფისტა (პისტაჩიო)",
     category:"გელატო",
-    desc:"სიცილიური ფისტის გელატო — მდიდარი, კაკლოვანი, ნამდვილი იტალიური სტილი.",
+    desc:"სიცილიური ფისტის მდიდარი და კაკლოვანი გელატო.",
     price:"₾6.71", priceNum:6.71,
-    image:"https://glovo.dhmedia.io/image/menus-glovo/products/05c9ea03fb9a1742d1250c7805c3bb382746944bc9915eb892794dac67b4f69a?t=W3sicmVzaXplIjp7Im1vZGUiOiJmaXQiLCJ3aWR0aCI6MzIwLCJoZWlnaHQiOjMyMH19XQ==",
-    emoji:"🟢",
+    image:"lucapolare/luca5.png",
+    emoji:"🟢"
   },
   {
     id:"l6", brandId:"luca",
     name:"ლიმონის სორბე",
     category:"სორბე",
-    desc:"სხარტი ლიმონის სორბე — უცხიმო, გამაგრილებელი, სრულად ბუნებრივი.",
+    desc:"გამაგრილებელი ლიმონის სორბე — მსუბუქი და ნატურალური.",
     price:"₾6.71", priceNum:6.71,
-    image:"https://glovo.dhmedia.io/image/menus-glovo/products/05c9ea03fb9a1742d1250c7805c3bb382746944bc9915eb892794dac67b4f69a?t=W3sicmVzaXplIjp7Im1vZGUiOiJmaXQiLCJ3aWR0aCI6MzIwLCJoZWlnaHQiOjMyMH19XQ==",
-    emoji:"🍋",
+    image:"lucapolare/luca6.png",
+    emoji:"🍋"
   },
   {
     id:"l7", brandId:"luca",
     name:"ტირამისუ გელატო",
     category:"გელატო",
-    desc:"ყავა + მასკარპონე + კაკაო — ყინულოვანი ტირამისუ, სავსე ესპრესოს გემოთი.",
-    price:"₾7.50", priceNum:7.50,
-    image:"https://glovo.dhmedia.io/image/menus-glovo/products/05c9ea03fb9a1742d1250c7805c3bb382746944bc9915eb892794dac67b4f69a?t=W3sicmVzaXplIjp7Im1vZGUiOiJmaXQiLCJ3aWR0aCI6MzIwLCJoZWlnaHQiOjMyMH19XQ==",
-    emoji:"☕",
+    desc:"ყავა, მასკარპონე და კაკაო — ტირამისუს ყინულოვანი ვერსია.",
+    price:"₾7.50", priceNum:7.5,
+    image:"lucapolare/luca7.png",
+    emoji:"☕"
   },
   {
     id:"l8", brandId:"luca",
     name:"ბურბონ ვანილია",
     category:"გელატო",
-    desc:"ბურბონის ვანილიანი გელატო — ნამდვილი ვანილის ხის მარცვლები, ნაღების სიმდიდრე.",
+    desc:"ნამდვილი ვანილის მარცვლებით დამზადებული კრემოვანი გელატო.",
     price:"₾6.71", priceNum:6.71,
-    image:"https://glovo.dhmedia.io/image/menus-glovo/products/05c9ea03fb9a1742d1250c7805c3bb382746944bc9915eb892794dac67b4f69a?t=W3sicmVzaXplIjp7Im1vZGUiOiJmaXQiLCJ3aWR0aCI6MzIwLCJoZWlnaHQiOjMyMH19XQ==",
-    emoji:"🤍",
+    image:"lucapolare/luca8.png",
+    emoji:"🤍"
   },
-
+  {
+    id:"l9", brandId:"luca",
+    name:"რაფაელოს ვულკანი",
+    category:"გელატო",
+    desc:"ქოქოსისა და თეთრი შოკოლადის კრემოვანი ვულკანური დესერტი.",
+    price:"₾6.71", priceNum:6.71,
+    image:"lucapolare/luca9.png",
+    emoji:"🥥"
+  },
+  {
+    id:"l10", brandId:"luca",
+    name:"შოკოლადი ბანანით და თხილით",
+    category:"გელატო",
+    desc:"შოკოლადის მდიდარი გემო ბანანითა და ხრაშუნა თხილით.",
+    price:"₾6.71", priceNum:6.71,
+    image:"lucapolare/luca10.png",
+    emoji:"🍫"
+  },
+  {
+    id:"l11", brandId:"luca",
+    name:"შოკოლადი",
+    category:"გელატო",
+    desc:"კლასიკური შოკოლადის ინტენსიური და მდიდარი გემო.",
+    price:"₾6.71", priceNum:6.71,
+    image:"lucapolare/luca11.png",
+    emoji:"🍫"
+  },
+  {
+    id:"l12", brandId:"luca",
+    name:"კარამელი ნუშით",
+    category:"გელატო",
+    desc:"კარამელის კრემოვანი გელატო ხრაშუნა ნუშით.",
+    price:"₾6.71", priceNum:6.71,
+    image:"lucapolare/luca12.png",
+    emoji:"🍯"
+  },
+  {
+    id:"l13", brandId:"luca",
+    name:"ამარენა ალუბალი",
+    category:"გელატო",
+    desc:"იტალიური ალუბლის ტკბილ-მჟავე გემო კრემოვან ბაზაზე.",
+    price:"₾6.71", priceNum:6.71,
+    image:"lucapolare/luca13.png",
+    emoji:"🍒"
+  },
+  {
+    id:"l14", brandId:"luca",
+    name:"ვაშლის შტრუდელი",
+    category:"გელატო",
+    desc:"დარიჩინისა და ვაშლის დესერტული გელატო.",
+    price:"₾6.71", priceNum:6.71,
+    image:"lucapolare/luca14.png",
+    emoji:"🍏"
+  },
+  {
+    id:"l15", brandId:"luca",
+    name:"რძე & ნაღები",
+    category:"გელატო",
+    desc:"სუფთა რძისა და ნაღების კლასიკური გემო.",
+    price:"₾6.71", priceNum:6.71,
+    image:"lucapolare/luca15.png",
+    emoji:"🥛"
+  },
+  {
+    id:"l16", brandId:"luca",
+    name:"ტარტუფოს ვულკანი",
+    category:"გელატო",
+    desc:"შოკოლადის ინტენსიური და მდიდარი ტარტუფოს სტილი.",
+    price:"₾6.71", priceNum:6.71,
+    image:"lucapolare/luca16.png",
+    emoji:"🍫"
+  },
+  {
+    id:"l17", brandId:"luca",
+    name:"ნუთელა",
+    category:"გელატო",
+    desc:"თხილისა და შოკოლადის კრემოვანი ნუთელას გემო.",
+    price:"₾6.71", priceNum:6.71,
+    image:"lucapolare/luca17.png",
+    emoji:"🍫"
+  },
+  {
+    id:"l18", brandId:"luca",
+    name:"ჟოლო",
+    category:"სორბე",
+    desc:"ჟოლოს მჟავე და გამაგრილებელი სორბე.",
+    price:"₾6.71", priceNum:6.71,
+    image:"lucapolare/luca18.png",
+    emoji:"🍇"
+  },
+  {
+    id:"l19", brandId:"luca",
+    name:"დიაბეტური მარწყვი",
+    category:"სორბე",
+    desc:"შაქრის გარეშე მარწყვის მსუბუქი სორბე.",
+    price:"₾6.71", priceNum:6.71,
+    image:"lucapolare/luca19.png",
+    emoji:"🍓"
+  },
   /* ────────── PINGO ────────── */
   {
     id:"p1", brandId:"pingo",
@@ -594,7 +692,7 @@ const products = [
     category:"საოჯახო",
     desc:"შაქრის გარეშე ვანილის ნაყინი — ჯანსაღი ალტერნატივა, სრული გემო.",
     price:"₾5.00", priceNum:5.00,
-    image:"pingo_data/images/საოჯახო,_0%_შაქარი_ვანილის_გემო.jpg",
+    image:"pingo_data/images/saojaxo_0_shaqari_vanili.jpg",
     imageRemote:"https://pingo.ge/uploads/products/5c7796e5824d9.jpg",
     productLink:"https://pingo.ge/ka/product/saojaxo-0-shaqari-vanilis-gemo/81/",
     emoji:"💙",
