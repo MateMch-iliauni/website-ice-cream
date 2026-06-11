@@ -47,6 +47,16 @@ const brands = [
     cardClass: "bc-lider",
     desc: "ქართული ნაყინის ვეტერანი — 2001 წლიდან. კლასიკური პლომბირი, ვაფლის ჭიქა და საოჯახო ყუთები ხელმისაწვდომ ფასად.",
   },
+  {
+  id: "gurjaani",
+  name: "Gurjaani",
+  image: "logos/gurjaani.jpg",
+  tag: "ტრადიციული · ქართული",
+  color: "#F57C00",
+  tagClass: "tag-gurjaani",
+  cardClass: "bc-gurjaani",
+  desc: "გურჯაანის ნაყინი — ტრადიციული ქართული გემოებითა და მრავალფეროვანი ასორტიმენტით.",
+},
 ];
 /* ════════════════════════════════
    ② PRODUCT DATA
@@ -868,7 +878,116 @@ const products = [
     price:"₾4.00", priceNum:4.00,
     image:"",
     emoji:"🍮",
-  }
+  },
+  /* ────────── GURJAANI ────────── */
+{
+  id:"g1", brandId:"gurjaani",
+  name:"საამო ვანილით",
+  category:"ჭიქის ნაყინი",
+  desc:"კლასიკური ვანილის ნაყინი გურჯაანის ტრადიციული რეცეპტით.",
+  price:"₾1.50", priceNum:1.50,
+  image:"",
+  emoji:"🍦",
+},
+{
+  id:"g2", brandId:"gurjaani",
+  name:"საამო კაკაოს ფხვნილით",
+  category:"ჭიქის ნაყინი",
+  desc:"შოკოლადის არომატის ნაყინი კაკაოს ფხვნილით.",
+  price:"₾1.50", priceNum:1.50,
+  image:"",
+  emoji:"🍫",
+},
+{
+  id:"g3", brandId:"gurjaani",
+  name:"გურჯაანის ბრიკეტი",
+  category:"ბრიკეტი",
+  desc:"ტრადიციული ნაღების ბრიკეტი კლასიკური გემოთი.",
+  price:"₾2.00", priceNum:2.00,
+  image:"",
+  emoji:"🟨",
+},
+{
+  id:"g4", brandId:"gurjaani",
+  name:"შოკოლადის ბრიკეტი",
+  category:"ბრიკეტი",
+  desc:"კრემოვანი შოკოლადის ბრიკეტი მდიდარი კაკაოს გემოთი.",
+  price:"₾2.20", priceNum:2.20,
+  image:"",
+  emoji:"🍫",
+},
+{
+  id:"g5", brandId:"gurjaani",
+  name:"გურჯაანის რულონი",
+  category:"რულონი",
+  desc:"კლასიკური ნაღების ნაყინი რულონის ფორმატში.",
+  price:"₾3.50", priceNum:3.50,
+  image:"",
+  emoji:"🍦",
+},
+{
+  id:"g6", brandId:"gurjaani",
+  name:"ჯოკერი",
+  category:"პოპულარული",
+  desc:"ნაღების ნაყინი კაკაოს მინანქრით — ერთ-ერთი ყველაზე მოთხოვნადი პროდუქტი.",
+  price:"₾2.50", priceNum:2.50,
+  image:"",
+  emoji:"🃏",
+},
+{
+  id:"g7", brandId:"gurjaani",
+  name:"ქებული ქიშმიშით",
+  category:"პოპულარული",
+  desc:"ნაღების ნაყინი ქიშმიშის მარცვლებით.",
+  price:"₾2.80", priceNum:2.80,
+  image:"",
+  emoji:"🍇",
+},
+{
+  id:"g8", brandId:"gurjaani",
+  name:"თაფლისფერი",
+  category:"პოპულარული",
+  desc:"განსაკუთრებული გემოს ტრადიციული ნაყინი.",
+  price:"₾2.50", priceNum:2.50,
+  image:"",
+  emoji:"🍯",
+},
+{
+  id:"g9", brandId:"gurjaani",
+  name:"ელფი",
+  category:"პორციული",
+  desc:"ნაყინი პლასტმასის შეფუთვით, მოსახერხებელი ყოველდღიური მოხმარებისთვის.",
+  price:"₾2.00", priceNum:2.00,
+  image:"",
+  emoji:"🧚",
+},
+{
+  id:"g10", brandId:"gurjaani",
+  name:"პლასტმასის ვედრო",
+  category:"საოჯახო",
+  desc:"საოჯახო შეფუთვა სხვადასხვა გემოს კომბინაციით.",
+  price:"₾12.00", priceNum:12.00,
+  image:"",
+  emoji:"🪣",
+},
+{
+  id:"g11", brandId:"gurjaani",
+  name:"სტანდარტული ვაფლის ჭიქა",
+  category:"ვაფლის ჭიქა",
+  desc:"კლასიკური ნაყინი ხრაშუნა ვაფლის ჭიქაში.",
+  price:"₾1.50", priceNum:1.50,
+  image:"",
+  emoji:"🧇",
+},
+{
+  id:"g12", brandId:"gurjaani",
+  name:"ესკიმო შოკოლადის სქელი ჭიქურით",
+  category:"ესკიმო",
+  desc:"ნაღების ნაყინი შოკოლადის სქელი და ხრაშუნა ჭიქურით.",
+  price:"₾2.50", priceNum:2.50,
+  image:"",
+  emoji:"🍫",
+}
 ];
 
 /* ════════════════════════════════
@@ -1142,6 +1261,14 @@ const backendLocationsDB = {
     { name: "ქუთაისის პარკის ნაყინი", address: "ქუთაისი, ცენტრალური პარკი", lat: 42.2717, lng: 42.7053, hours: "10:00 - 22:00", rating: "4.6", desc: "იმერეთის მთავარი პარკი" }
   ],
 
+  // 🍦 GURJAANI ICE CREAM BRAND LOCATIONS
+  gurjaani: [
+    { name: "გურჯაანის ანყინი - ფლაგმანი", address: "გურჯაანი, ცენტრალური მოედანი", lat: 41.7441, lng: 45.8012, hours: "10:00 - 21:00", rating: "4.6", desc: "ადგილობრივი წარმოების მთავარი წერტილი" },
+    { name: "გურჯაანის ანყინი - სუპერმარკეტი Nikora", address: "გურჯაანი, თავისუფლების ქუჩა", lat: 41.7460, lng: 45.8050, hours: "09:00 - 22:00", rating: "4.4", desc: "შეფუთული ნაყინი სუპერმარკეტში" },
+    { name: "გურჯაანის ანყინი - Spar ფილიალი", address: "გურჯაანი, ცენტრალური ქუჩა", lat: 41.7428, lng: 45.7995, hours: "08:00 - 23:00", rating: "4.5", desc: "ყოველდღიური ხელმისაწვდომობა" },
+    { name: "გურჯაანის ანყინი - ბაზარი", address: "გურჯაანის აგრარული ბაზარი", lat: 41.7435, lng: 45.8032, hours: "08:00 - 18:00", rating: "4.3", desc: "ადგილობრივი ბაზრის დესერტი" }
+  ],
+
   tolia: [
     { name: "Tolia საფლაგმანო კაფე", address: "რუსთაველის გამზირი 24, თბილისი", lat: 41.6998, lng: 44.7991, hours: "10:00 - 22:00", rating: "4.9", desc: "ჩამოსასხმელი ნაყინი" },
     { name: "Tolia - City Mall", address: "ვაჟა-ფშაველა, თბილისი", lat: 41.7262, lng: 44.7394, hours: "10:00 - 22:00", rating: "4.8", desc: "მოლში მდებარე ფილიალი" }
@@ -1160,7 +1287,6 @@ const backendLocationsDB = {
     { name: "ლიდერი - საწყობი", address: "კახეთის გზატკეცილი", lat: 41.6853, lng: 44.9124, hours: "08:00 - 20:00", rating: "4.5", desc: "იაფი ნაყინი" }
   ]
 };
-
 let activeLeafletMap = null;
 let activeMapMarkers = [];
 

@@ -736,3 +736,20 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     height: 320px !important; /* რუკის ოპტიმალური ზომა ტელეფონში */
   }
 }
+.brand-cell {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.brand-logo {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.cmp-brand {
+    font-weight: 700;
+    font-size: 1rem;
+}
